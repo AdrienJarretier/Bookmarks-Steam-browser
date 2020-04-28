@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>
+        Steam browser Bookmarks
+    </title>
+
+    <link rel="stylesheet" href="extLibs/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+
+
+    <script src="extLibs/jquery-3.4.1.min.js"></script>
+    <script src="extLibs/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="extLibs/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+
+
+    <link href="extLibs/open-iconic-1.1.1/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+
+    <!-- -->
+    <link rel="stylesheet" href="stylesheets/style.css" />
+
+
+
+
+    <link rel="icon" href="images/favicon.svg">
+
+    <link rel="apple-touch-icon" sizes="96x96" href="images/favicon96.png">
+
+
+
+    <script src="javascripts/script.js"></script>
+
+</head>
+
+
+<body class="bg-white">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col">
+
+                <form id="formAddBookmark">
+
+                    <label class="sr-only" for="formAddBookmarkInputUri">Link</label>
+                    <input type="text" class="form-control bg-light" id="formAddBookmarkInputUri" name="uri"
+                        placeholder="https://steamcommunity.com/">
+
+                    <button type="button" class="btn btn-secondary btn-block" id="buttonAddBookmark">Bookmark</button>
+                </form>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="container" id="bookmarksList">
+
+            </div>
+        </div>
+
+        <template id="bookmarkCardTemplate">
+            <div id="caca" class="card  text-center text-white bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-secondary">Open</a>
+                </div>
+            </div>
+        </template>
+    </div>
+
+</body>
+
+</html>
