@@ -4,20 +4,26 @@ const dbUtils = require('./dbUtils.js');
 
 let executeStatement = dbUtils.executeStatement;
 
-exports.getAll = function () {
+exports.insertUser = function (user) {
 
-    let products = {}
+    return executeStatement('INSERT INTO users(id) VALUES(?) ; ',
+        [user.id],
+        'run');
 
-    for (let p of executeStatement(`
-    SELECT *
-    FROM products 
-    INNER JOIN units ON products.unit_id = units.id ; `
-        , null, 'all', true)) {
+}
 
-        products[p.products.id] = p
+exports.insertBookmark = function (user, bookmark) {
 
-    }
+    return executeStatement('INSERT INTO bookmarks(user_id, name, uri) VALUES(?, ?, ?) ; ',
+        [user.id, bookmark.name, bookmark.uri],
+        'run');
 
-    return products;
+}
+
+exports.getBookmarks = function (user) {
+
+    return executeStatement('SELECT * FROM bookmarks WHERE user_id = ? ; ',
+        [user.id],
+        'all');
 
 }
