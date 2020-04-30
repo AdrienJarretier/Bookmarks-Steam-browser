@@ -10,19 +10,30 @@ const db = new Database(config.db.database, { verbose: console.log });
 
 
 
-db.exec(`CREATE TABLE IF NOT EXISTS "units" (
-    "id" INTEGER PRIMARY KEY,
-    "name" VARCHAR(255) NOT NULL UNIQUE
-    );`);
+db.exec(`CREATE TABLE IF NOT EXISTS "users" (
+        "id" INTEGER PRIMARY KEY
+        );`);
 
-db.exec(`CREATE TABLE IF NOT EXISTS "products" (
-    "id" INTEGER PRIMARY KEY,
-    "name" VARCHAR(255) NOT NULL UNIQUE,
-    "unit_id" INTEGER NOT NULL,
-    "current" INTEGER,
-    "max" INTEGER,
-    FOREIGN KEY(unit_id) REFERENCES units(id)
-    );`);
+db.exec(`CREATE TABLE IF NOT EXISTS "games" (
+        "id" INTEGER PRIMARY KEY,
+        "name" VARCHAR(255) NOT NULL
+        );`);
+
+db.exec(`CREATE TABLE IF NOT EXISTS "bookmarks" (
+        "id" INTEGER PRIMARY KEY,
+        "user_id" INTEGER NOT NULL,
+        "name" VARCHAR(255),
+        "uri" TEXT NOT NULL,
+        FOREIGN KEY(user_id) REFERENCES users(id)
+        );`);
+
+db.exec(`CREATE TABLE IF NOT EXISTS "games_bookmarks" (
+        "bookmark_id" INTEGER NOT NULL,
+        "game_id" INTEGER NOT NULL,
+        FOREIGN KEY(bookmark_id) REFERENCES bookmarks(id),
+        FOREIGN KEY(game_id) REFERENCES games(id)
+        );`);
+
 
 
 db.close();

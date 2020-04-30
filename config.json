@@ -1,6 +1,6 @@
 {
     "db": {
-        "database": "db/dbName.db"
+        "database": "db/bookmarks.db"
     },
     "api": {
         "/entryPath": {
