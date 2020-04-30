@@ -19,6 +19,24 @@
 
   <div class="container">
 
+
+    <div class="row">
+
+      <% if (!user) { %>
+        
+      <p><a href="auth/steam">Sign On with Steam</a></p>
+      <% } else { %>
+      <h2>Hello, <%= user.displayName %>. - <a href='logout'>Logout</a></h2>
+      <% } %>
+
+      <!-- Should redirect to homepage if you're not logged in -->
+      <p><a href="account">See Account Information</a></p>
+
+
+
+
+    </div>
+
     <div class="row">
 
       <div class="col">
