@@ -9,7 +9,7 @@ var express = require('express')
 //   user back to this application at /auth/steam/return
 router.get('/steam',
   passport.authenticate('steam', { failureRedirect: '/' }),
-  function(req, res) {
+  function (req, res) {
     res.redirect('/');
   });
 
@@ -20,12 +20,12 @@ router.get('/steam',
 //   which, in this example, will redirect the user to the home page.
 router.get('/steam/return',
   // Issue #37 - Workaround for Express router module stripping the full url, causing assertion to fail 
-  function(req, res, next) {
-      req.url = req.originalUrl;
-      next();
-  }, 
+  function (req, res, next) {
+    req.url = req.originalUrl;
+    next();
+  },
   passport.authenticate('steam', { failureRedirect: '/' }),
-  function(req, res) {
+  function (req, res) {
     res.redirect('/');
   });
 
