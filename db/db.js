@@ -1,6 +1,6 @@
 "use strict";
 
-const dbUtils = require('dbUtils.js');
+const dbUtils = require('./dbUtils.js');
 
 let executeStatement = dbUtils.executeStatement;
 
