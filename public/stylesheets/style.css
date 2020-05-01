@@ -14,4 +14,5 @@ body {
 
 .card-body {
     padding-top: 0px;
+    max-width: 100%;
 }
