@@ -76,12 +76,18 @@ $(async () => {
 
         let form = $('#formAddBookmark');
 
+        let nameInput = form.find('input[name=name]');
+        let uriInput = form.find('input[name=uri]');
+
         let bookmark = await post('/bookmarks', {
-            name: form.find('input[name=name]').val(),
-            uri: form.find('input[name=uri]').val()
+            name: nameInput.val(),
+            uri: uriInput.val()
         });
 
         appendBookmark(bookmark);
+
+        nameInput.val('');
+        uriInput.val('');
 
     });
 
