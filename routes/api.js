@@ -43,9 +43,24 @@ makeSubroutes(apiDesc);
 
 
 
-router.get('/', function (req, res, next) {
+router.post('/', function (req, res, next) {
 
-    res.json(db.getAll());
+    console.log('post bookmark')
+
+    console.log(req.user);
+    console.log(req.body.bookmark);
+
+    res.json(db.insertBookmark(req.user, req.body.bookmark));
+});
+
+router.put('/', function (req, res, next) {
+
+    res.json('["not implemented yet"]');
+});
+
+router.delete('/', function (req, res, next) {
+
+    res.json('["not implemented yet"]');
 });
 
 module.exports = router

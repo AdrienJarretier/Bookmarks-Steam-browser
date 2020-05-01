@@ -3,9 +3,11 @@
         "database": "db/bookmarks.db"
     },
     "api": {
-        "/entryPath": {
+        "/bookmarks": {
             "methods": {
-                "GET": "Get all"
+                "POST": "add new bookmark",
+                "PUT": "edit bookmark",
+                "DELETE": "remove bookmark"
             },
             "routes": {
             }
