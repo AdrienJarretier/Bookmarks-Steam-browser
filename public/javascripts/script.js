@@ -1,10 +1,12 @@
 'use strict';
 
-$(() => {
+$(async () => {
 
-    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+    // let bookmarks = JSON.parse(get('/bookmarks')) || [];
 
-    // console.log(bookmarks);
+    let bookmarks = await get('/bookmarks');
+
+    console.log(bookmarks);
 
     let cardTemplate = $('#bookmarkCardTemplate')[0].content;
     // console.log(cardTemplate);
@@ -28,8 +30,8 @@ $(() => {
 
         let card = $(cardTemplate.cloneNode(true));
 
-        card.find('h5').text(bookmark);
-        card.find('a').attr("href", bookmark);
+        card.find('h5').text(bookmark.name);
+        card.find('a').attr("href", bookmark.uri);
 
         let col = $('<div>').addClass('col-' + COL_SIZE).append(card);
 

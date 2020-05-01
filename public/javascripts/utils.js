@@ -2,11 +2,19 @@
 
 async function get(uri) {
 
-    const response = await fetch(uri, {
-        method: 'GET',
-    });
+    try {
 
-    return await response.json();
+        const response = await fetch(uri, {
+            method: 'GET',
+        });
+
+        return await response.json();
+
+    } catch (e) {
+
+        return [];
+
+    }
 
 }
 

@@ -7,7 +7,6 @@
     %>
 
 
-
   <script src="javascripts/utils.js"></script>
   <script src="javascripts/script.js"></script>
 
@@ -23,7 +22,7 @@
     <div class="row">
 
       <% if (!user) { %>
-        
+
       <p><a href="auth/steam">Sign On with Steam</a></p>
       <% } else { %>
       <h2>Hello, <%= user.displayName %>. - <a href='logout'>Logout</a></h2>

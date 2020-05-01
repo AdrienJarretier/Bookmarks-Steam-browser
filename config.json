@@ -5,11 +5,16 @@
     "api": {
         "/bookmarks": {
             "methods": {
-                "POST": "add new bookmark",
-                "PUT": "edit bookmark",
-                "DELETE": "remove bookmark"
+                "GET": "get user bookmarks",
+                "POST": "add new bookmark"
             },
             "routes": {
+                "/:id": {
+                    "methods": {
+                        "PUT": "edit bookmark",
+                        "DELETE": "remove bookmark"
+                    }
+                }
             }
         }
     }

@@ -42,6 +42,16 @@ function makeSubroutes(routeDesc, completePath) {
 makeSubroutes(apiDesc);
 
 
+router.get('/', common.ensureAuthenticated, function (req, res, next) {
+
+    console.log('get bookmarks');
+
+    let bookmarks = db.getBookmarks(req.user);
+
+    console.log(bookmarks);
+
+    res.json(bookmarks);
+});
 
 router.post('/', function (req, res, next) {
 
@@ -53,12 +63,12 @@ router.post('/', function (req, res, next) {
     res.json(db.insertBookmark(req.user, req.body.bookmark));
 });
 
-router.put('/', function (req, res, next) {
+router.put('/:id', function (req, res, next) {
 
     res.json('["not implemented yet"]');
 });
 
-router.delete('/', function (req, res, next) {
+router.delete('/:id', function (req, res, next) {
 
     res.json('["not implemented yet"]');
 });
