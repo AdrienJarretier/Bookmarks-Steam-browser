@@ -56,9 +56,10 @@ passport.deserializeUser(function (user, done) {
 //   Strategies in passport require a `validate` function, which accept
 //   credentials (in this case, an OpenID identifier and profile), and invoke a
 //   callback with a user object.
+let realm = common.serverConfig.returnAddress + ':' + common.serverConfig.port + '/';
 passport.use(new SteamStrategy({
-  returnURL: 'http://localhost:3000/auth/steam/return',
-  realm: 'http://localhost:3000/',
+  returnURL: realm + 'auth/steam/return',
+  realm: realm,
   apiKey: common.serverConfig.steamApiKey
 },
   function (identifier, profile, done) {
