@@ -4,11 +4,24 @@ const dbUtils = require('./dbUtils.js');
 
 let executeStatement = dbUtils.executeStatement;
 
-exports.insertUser = function (user) {
+exports.insertUserIfNotExists = function (user) {
 
-    return executeStatement('INSERT INTO users(id) VALUES(?) ; ',
+    let userExists = dbUtils.executeStatement(
+        'SELECT EXISTS(SELECT 1 FROM users WHERE id = ?) as userExists;',
         [user.id],
-        'run');
+        'get').userExists
+
+    if (!userExists) {
+
+        return executeStatement('INSERT INTO users(id) VALUES(?) ; ',
+            [user.id],
+            'run');
+
+    }
+    else {
+
+        return {changes:0};
+    }
 
 }
 
@@ -22,7 +35,10 @@ exports.insertBookmark = function (user, bookmark) {
 
 exports.getBookmarks = function (user) {
 
-    return executeStatement('SELECT * FROM bookmarks WHERE user_id = ? ; ',
+    return executeStatement(`
+    SELECT *
+    FROM bookmarks
+    WHERE user_id = ? ; `,
         [user.id],
         'all');
 
