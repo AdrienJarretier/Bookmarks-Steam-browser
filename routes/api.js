@@ -47,20 +47,16 @@ router.get('/', common.ensureAuthenticated, function (req, res, next) {
     console.log('get bookmarks');
 
     let bookmarks = db.getBookmarks(req.user);
-
-    console.log(bookmarks);
-
     res.json(bookmarks);
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', common.ensureAuthenticated, function (req, res, next) {
 
-    console.log('post bookmark')
+    console.log('post bookmark');
 
-    console.log(req.user);
-    console.log(req.body.bookmark);
+    let infos = db.insertBookmark(req.user, req.body);
 
-    res.json(db.insertBookmark(req.user, req.body.bookmark));
+    res.json(db.getBookmark(infos.lastInsertRowid));
 });
 
 router.put('/:id', function (req, res, next) {

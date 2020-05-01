@@ -20,7 +20,7 @@ exports.insertUserIfNotExists = function (user) {
     }
     else {
 
-        return {changes:0};
+        return { changes: 0 };
     }
 
 }
@@ -41,5 +41,16 @@ exports.getBookmarks = function (user) {
     WHERE user_id = ? ; `,
         [user.id],
         'all');
+
+}
+
+exports.getBookmark = function (id) {
+
+    return executeStatement(`
+    SELECT name, uri
+    FROM bookmarks
+    WHERE id = ? ; `,
+        [id],
+        'get');
 
 }

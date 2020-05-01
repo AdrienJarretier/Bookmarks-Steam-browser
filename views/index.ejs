@@ -36,20 +36,38 @@
 
     </div>
 
+    <% if (user) { %>
+
     <div class="row">
 
       <div class="col">
 
         <form id="formAddBookmark">
 
-          <label class="sr-only" for="formAddBookmarkInputUri">Link</label>
-          <input type="text" class="form-control bg-light" id="formAddBookmarkInputUri" name="uri"
-            placeholder="https://steamcommunity.com/">
+          <% labelColSize=2 %>
+
+          <div class="form-group row">
+            <label for="formAddBookmarkInputName" class="col-<%= labelColSize %> col-form-label">Name </label>
+            <div class="col">
+              <input type="text" class="form-control bg-light" id="formAddBookmarkInputName" name="name"
+                placeholder="Steam community">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="formAddBookmarkInputUri" class="col-<%= labelColSize %> col-form-label">Address </label>
+            <div class="col">
+              <input type="text" class="form-control bg-light" id="formAddBookmarkInputUri" name="uri"
+                placeholder="https://steamcommunity.com/">
+            </div>
+          </div>
 
           <button type="button" class="btn btn-secondary btn-block" id="buttonAddBookmark">Bookmark</button>
         </form>
       </div>
     </div>
+
+    <% }%>
 
     <br>
 
@@ -64,7 +82,7 @@
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text"></p>
-          <a href="#" class="btn btn-secondary">Open</a>
+          <a href="#" class="btn btn-secondary">Go</a>
         </div>
       </div>
     </template>

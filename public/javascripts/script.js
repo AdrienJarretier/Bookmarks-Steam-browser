@@ -6,8 +6,6 @@ $(async () => {
 
     let bookmarks = await get('/bookmarks');
 
-    console.log(bookmarks);
-
     let cardTemplate = $('#bookmarkCardTemplate')[0].content;
     // console.log(cardTemplate);
 
@@ -24,13 +22,14 @@ $(async () => {
 
     let row = newBookmarkRow();
     let remainingCols = 12;
-    for (let bookmark of bookmarks) {
 
-        // console.log(bookmark);
+    function appendBookmark(bookmark) {
 
         let card = $(cardTemplate.cloneNode(true));
 
-        card.find('h5').text(bookmark.name);
+        let bmkName = (bookmark.name.length > 0 ? bookmark.name : bookmark.uri);
+
+        card.find('h5').text(bmkName);
         card.find('a').attr("href", bookmark.uri);
 
         let col = $('<div>').addClass('col-' + COL_SIZE).append(card);
@@ -46,18 +45,22 @@ $(async () => {
 
     }
 
-    $('#buttonAddBookmark').click(() => {
+    for (let bookmark of bookmarks) {
+
+        appendBookmark(bookmark);
+
+    }
+
+    $('#buttonAddBookmark').click(async () => {
 
         let form = $('#formAddBookmark');
-        let uriVal = form.find('input[name=uri]').val();
 
-        // console.log('adding : ' + uriVal)
+        let bookmark = await post('/bookmarks', {
+            name: form.find('input[name=name]').val(),
+            uri: form.find('input[name=uri]').val()
+        });
 
-        bookmarks.push(uriVal);
-        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-
-        // console.log(bookmarks);
-        // console.log(localStorage);
+        appendBookmark(bookmark);
 
     });
 
