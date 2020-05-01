@@ -21,38 +21,32 @@
 
 
     <div class="row">
-      <div class="col-8">
-
-      </div>
       <div class="col">
-        <div class="container">
-          <div class="row">
-
-
-            <div class="col">
-
-              <% if (!user) { %>
-
-              <a href="auth/steam"><img src="/images/steamLogin/sits_large_border.png" alt="Sign in through Steam"></a>
-              <% } else { %>
-
-
-              <img class="avatar rounded" src=<%= user.photo %>' alt="<%= user.displayName %>'s Steam avatar" />
-              <%= user.displayName %>
-
-            </div>
-            <div class="col">
-
-
-              <a href='logout'>Logout</a>
-            </div>
-          </div>
-          <% } %>
-
-
-        </div>
 
       </div>
+
+
+      <div class="col-3">
+
+        <% if (!user) { %>
+
+        <a href="auth/steam"><img src="/images/steamLogin/sits_large_border.png" alt="Sign in through Steam"></a>
+        <% } else { %>
+
+
+        <img class="avatar rounded" src=<%= user.photo %>' alt="<%= user.displayName %>'s Steam avatar" />
+        <%= user.displayName %>
+
+      </div>
+      <div class="col-3">
+
+
+        <a href='logout'>Logout</a>
+      </div>
+
+      <% } %>
+
+
 
     </div>
 

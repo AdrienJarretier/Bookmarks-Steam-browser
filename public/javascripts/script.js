@@ -49,9 +49,21 @@ $(async () => {
         let bmkName = (bookmark.name.length > 0 ? bookmark.name : bookmark.uri);
 
         let uri = bookmark.uri;
+        let protocol = uri.match('^([a-zA-Z]+):\/\/')[1];
 
         card.find('h5').text(bmkName);
-        card.find('a').attr("href", uri);
+
+        let goButton = card.find('a');
+        goButton.attr("href", uri);
+
+        if (protocol.toLowerCase() == 'file') {
+
+            goButton.click(() => {
+
+                goButton.html('Right click and <br> Open Link In New Tab ');
+
+            });
+        }
 
         let col = $('<div>').addClass('col-md-' + COL_SIZE).append(card);
 
