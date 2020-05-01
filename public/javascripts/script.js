@@ -27,6 +27,25 @@ $(async () => {
 
         let card = $(cardTemplate.cloneNode(true));
 
+
+        let deleteButton = card.find('button[name="deleteBookmarkButton"]');
+
+        deleteButton
+            .click(async function () {
+
+                try {
+
+                    let infos = await sendDelete('/bookmarks/' + bookmark.id);
+
+                    col.remove();
+                }
+                catch (e) {
+
+                    console.error(e);
+                }
+
+            });
+
         let bmkName = (bookmark.name.length > 0 ? bookmark.name : bookmark.uri);
 
         let uri = bookmark.uri;

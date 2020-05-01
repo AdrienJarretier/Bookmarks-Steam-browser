@@ -46,6 +46,20 @@ async function put(uri, data) {
 
 }
 
+async function sendDelete(uri, data) {
+
+    const response = await fetch(uri, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    return await response.json();
+
+}
+
 
 function monitorEvents(element) {
 
