@@ -1,6 +1,10 @@
+'use strict';
+
 var express = require('express')
   , router = express.Router()
   , passport = require('passport');
+
+const db = require('../db/db.js');
 
 // GET /auth/steam
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -21,17 +25,19 @@ router.get('/steam',
 router.get('/steam/return',
   // Issue #37 - Workaround for Express router module stripping the full url, causing assertion to fail 
   function (req, res, next) {
-    
+
     req.url = req.originalUrl;
     next();
   },
   passport.authenticate('steam', { failureRedirect: '/' }),
   function (req, res) {
-    console.log(req.user.id);
-    console.log(typeof req.user.id);
-    console.log(req.user._json.gameextrainfo);
-    console.log(req.user._json.gameid);
-    console.log(typeof req.user._json.gameid);
+
+    db.insertUserIfNotExists(req.user);
+
+    console.log('user id          : ' + req.user.id);
+    console.log('game played name : ' + req.user._json.gameextrainfo);
+    console.log('game played id   : ' + req.user._json.gameid);
+
     res.redirect('/');
   });
 
