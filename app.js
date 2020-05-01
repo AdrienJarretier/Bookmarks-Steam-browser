@@ -1,3 +1,5 @@
+'use strict';
+
 var createError = require('http-errors');
 var express = require('express');
 
@@ -16,6 +18,7 @@ var authRoutes = require('./routes/auth');
 
 const common = require("./common.js");
 
+const db = require('./db/db.js');
 
 
 
@@ -26,12 +29,29 @@ const common = require("./common.js");
 //   the user by ID when deserializing.  However, since this example does not
 //   have a database of user records, the complete Steam profile is serialized
 //   and deserialized.
-passport.serializeUser(function(user, done) {
-  done(null, user);
+passport.serializeUser(function (user, done) {
+  done(null, {
+
+    id: user.id,
+    displayName: user.displayName,
+    photo: user.photos[2].value,
+    gamePlayed: {
+      id: user._json.gameid,
+      extrainfo: user._json.gameextrainfo
+    }
+
+  });
 });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function (user, done) {
+
+  user.bookmarks = db.getBookmarks(user);
+
+  // console.log(' -------- user -------- ');
+  // console.log(user);
+  // console.log(' -------- /// user -------- ');
+
+  done(null, user);
 });
 
 // Use the SteamStrategy within Passport.
@@ -43,18 +63,18 @@ passport.use(new SteamStrategy({
   realm: 'http://localhost:3000/',
   apiKey: common.serverConfig.steamApiKey
 },
-function(identifier, profile, done) {
-  // asynchronous verification, for effect...
-  process.nextTick(function () {
+  function (identifier, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function () {
 
-    // To keep the example simple, the user's Steam profile is returned to
-    // represent the logged-in user.  In a typical application, you would want
-    // to associate the Steam account with a user record in your database,
-    // and return that user instead.
-    profile.identifier = identifier;
-    return done(null, profile);
-  });
-}
+      // To keep the example simple, the user's Steam profile is returned to
+      // represent the logged-in user.  In a typical application, you would want
+      // to associate the Steam account with a user record in your database,
+      // and return that user instead.
+      profile.identifier = identifier;
+      return done(null, profile);
+    });
+  }
 ));
 
 var app = express();
@@ -64,10 +84,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({
-    secret: 'your secret',
-    name: 'name of session id',
-    resave: true,
-    saveUninitialized: true}));
+  secret: 'your secret',
+  name: 'name of session id',
+  resave: true,
+  saveUninitialized: true
+}));
 
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
@@ -88,12 +109,12 @@ app.use('/auth', authRoutes);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
