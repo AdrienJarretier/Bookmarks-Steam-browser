@@ -29,8 +29,10 @@ $(async () => {
 
         let bmkName = (bookmark.name.length > 0 ? bookmark.name : bookmark.uri);
 
+        let uri = bookmark.uri;
+
         card.find('h5').text(bmkName);
-        card.find('a').attr("href", bookmark.uri);
+        card.find('a').attr("href", uri);
 
         let col = $('<div>').addClass('col-md-' + COL_SIZE).append(card);
 

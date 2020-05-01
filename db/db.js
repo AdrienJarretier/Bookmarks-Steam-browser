@@ -36,7 +36,7 @@ exports.insertBookmark = function (user, bookmark) {
 exports.getBookmarks = function (user) {
 
     return executeStatement(`
-    SELECT name, uri
+    SELECT id, name, uri
     FROM bookmarks
     WHERE user_id = ? ; `,
         [user.id],
@@ -47,10 +47,21 @@ exports.getBookmarks = function (user) {
 exports.getBookmark = function (id) {
 
     return executeStatement(`
-    SELECT name, uri
+    SELECT id, name, uri
     FROM bookmarks
     WHERE id = ? ; `,
         [id],
         'get');
+
+}
+
+exports.deleteUserBookmark = function (user, id) {
+
+    return executeStatement(`
+    DELETE
+    FROM bookmarks
+    WHERE user_id = ? AND id = ? ; `,
+        [user.id, id],
+        'run');
 
 }

@@ -41,8 +41,10 @@ function makeSubroutes(routeDesc, completePath) {
 
 makeSubroutes(apiDesc);
 
+router.use(common.ensureAuthenticated);
 
-router.get('/', common.ensureAuthenticated, function (req, res, next) {
+
+router.get('/', function (req, res, next) {
 
     console.log('get bookmarks');
 
@@ -50,9 +52,13 @@ router.get('/', common.ensureAuthenticated, function (req, res, next) {
     res.json(bookmarks);
 });
 
-router.post('/', common.ensureAuthenticated, function (req, res, next) {
+router.post('/', function (req, res, next) {
 
     console.log('post bookmark');
+
+    if (!RegExp('[a-zA-Z]+://.+').test(req.body.uri)) {
+        req.body.uri = 'https://' + req.body.uri;
+    }
 
     let infos = db.insertBookmark(req.user, req.body);
 
@@ -66,7 +72,7 @@ router.put('/:id', function (req, res, next) {
 
 router.delete('/:id', function (req, res, next) {
 
-    res.json('["not implemented yet"]');
+    res.json(db.deleteUserBookmark(req.user, req.params.id));
 });
 
 module.exports = router
