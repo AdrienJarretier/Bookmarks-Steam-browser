@@ -11,25 +11,25 @@ const db = new Database(config.db.database, { verbose: console.log });
 
 
 db.exec(`CREATE TABLE IF NOT EXISTS "users" (
-        "id" INTEGER PRIMARY KEY
+        "id" TEXT PRIMARY KEY
         );`);
 
 db.exec(`CREATE TABLE IF NOT EXISTS "games" (
-        "id" INTEGER PRIMARY KEY,
-        "name" VARCHAR(255) NOT NULL
+        "id" TEXT PRIMARY KEY,
+        "name" TEXT NOT NULL
         );`);
 
 db.exec(`CREATE TABLE IF NOT EXISTS "bookmarks" (
         "id" INTEGER PRIMARY KEY,
-        "user_id" INTEGER NOT NULL,
-        "name" VARCHAR(255),
+        "user_id" TEXT NOT NULL,
+        "name" TEXT,
         "uri" TEXT NOT NULL,
         FOREIGN KEY(user_id) REFERENCES users(id)
         );`);
 
 db.exec(`CREATE TABLE IF NOT EXISTS "games_bookmarks" (
         "bookmark_id" INTEGER NOT NULL,
-        "game_id" INTEGER NOT NULL,
+        "game_id" TEXT NOT NULL,
         FOREIGN KEY(bookmark_id) REFERENCES bookmarks(id),
         FOREIGN KEY(game_id) REFERENCES games(id)
         );`);

@@ -27,9 +27,11 @@ router.get('/steam/return',
   },
   passport.authenticate('steam', { failureRedirect: '/' }),
   function (req, res) {
-    console.log(req.user);
+    console.log(req.user.id);
+    console.log(typeof req.user.id);
     console.log(req.user._json.gameextrainfo);
     console.log(req.user._json.gameid);
+    console.log(typeof req.user._json.gameid);
     res.redirect('/');
   });
 
