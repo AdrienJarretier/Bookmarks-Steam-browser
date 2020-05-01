@@ -37,14 +37,19 @@
         <img class="avatar rounded" src=<%= user.photo %>' alt="<%= user.displayName %>'s Steam avatar" />
         <%= user.displayName %>
 
+        <% } %>
       </div>
-      <div class="col-3">
+      <div class="col-4">
 
+        <% if (user) { %>
+        <button class="btn_green_white_innerfade"><a href='logout'>
+            Sign Out</a>
+        </button>
 
-        <a href='logout'>Logout</a>
+        <% } %>
+
       </div>
 
-      <% } %>
 
 
 
