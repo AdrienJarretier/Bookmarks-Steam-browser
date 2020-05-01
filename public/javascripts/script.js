@@ -32,7 +32,7 @@ $(async () => {
         card.find('h5').text(bmkName);
         card.find('a').attr("href", bookmark.uri);
 
-        let col = $('<div>').addClass('col-' + COL_SIZE).append(card);
+        let col = $('<div>').addClass('col-md-' + COL_SIZE).append(card);
 
         row.append(col);
 
