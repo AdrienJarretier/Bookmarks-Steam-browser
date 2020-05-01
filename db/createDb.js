@@ -23,8 +23,9 @@ db.exec(`CREATE TABLE IF NOT EXISTS "bookmarks" (
         "id" INTEGER PRIMARY KEY,
         "user_id" TEXT NOT NULL,
         "name" TEXT,
-        "uri" TEXT NOT NULL,
-        FOREIGN KEY(user_id) REFERENCES users(id)
+        "uri" TEXT NOT NULL CHECK (uri <> ''),
+        FOREIGN KEY(user_id) REFERENCES users(id),
+        CONSTRAINT unique_bookmark UNIQUE(user_id,uri)
         );`);
 
 db.exec(`CREATE TABLE IF NOT EXISTS "games_bookmarks" (
