@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-
+      include('partials/head.ejs')
+    %>
+
+    <script src="extLibs/webCalc/webCalc.js"></script>
+    <link href="extLibs/webCalc/stylesheets/webCalc.css" rel="stylesheet">
+
+</head>
+
+
+
+<body class="bg-white">
+
+    <div class="container">
+
+
+        <div class="row">
+
+            <div class="col">
+
+                <div id="sheet"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+
+    new Sheet('#sheet', 10, 10);
+
+</script>
+
+</html>

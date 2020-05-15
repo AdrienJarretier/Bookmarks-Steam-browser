@@ -149,25 +149,3 @@ class Sheet {
     }
 
 }
-
-// function keyCode2Char(keyCode) {
-
-//     console.log(keyCode, String.fromCharCode(keyCode));
-
-// }
-
-$(() => {
-
-    let defaultSheet = new Sheet('#sheet', 10, 10);
-
-    // $(document).keydown(function (event) {
-
-    //     // keyCode2Char(event.key);
-
-    //     console.log(event.key);
-
-    //     defaultSheet.selected.content += event.key;
-
-    // });
-
-});
