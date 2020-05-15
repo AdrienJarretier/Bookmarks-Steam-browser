@@ -19,45 +19,11 @@
 
   <div class="container">
 
-
-    <div class="row">
-      <div class="col">
-
-      </div>
-
-
-      <div class="col-3">
-
-        <% if (!user) { %>
-
-        <a href="auth/steam"><img src="/images/steamLogin/sits_large_border.png" alt="Sign in through Steam"></a>
-        <% } else { %>
-
-
-        <img class="avatar rounded" src=<%= user.photo %>' alt="<%= user.displayName %>'s Steam avatar" />
-        <%= user.displayName %>
-
-        <% } %>
-      </div>
-      <div class="col-4">
-
-        <% if (user) { %>
-        <button class="btn_green_white_innerfade"><a href='logout'>
-            Sign Out</a>
-        </button>
-
-        <% } %>
-
-      </div>
-
-
-
-
-    </div>
+    <%-
+      include('partials/header.ejs')
+    %>
 
     <% if (user) { %>
-
-    <hr>
 
     <div class="row">
 
@@ -88,8 +54,6 @@
       </div>
     </div>
 
-    <% }%>
-
     <br>
 
     <div class="row">
@@ -119,6 +83,18 @@
         </div>
       </div>
     </template>
+
+    <% } else {
+      %>
+  
+          <%-
+            include('partials/loggedOutBody.ejs')
+          %>
+  
+      <%   
+        }
+      %>
+
   </div>
 
 </body>

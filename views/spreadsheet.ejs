@@ -18,24 +18,44 @@
     <div class="container">
 
 
-        <div class="row">
+        <%-
+        include('partials/header.ejs')
+        %>
 
-            <div class="col">
+        <% if (user) { %>
 
-                <div id="sheet"></div>
+        <div class="row justify-content-center">
+
+            <div class="col-auto">
+
+                <table id="sheet"></table>
 
             </div>
 
         </div>
 
+        <% } else { %>
+
+        <%-
+                include('partials/loggedOutBody.ejs')
+            %>
+
+        <%   
+        }
+        %>
+
     </div>
 
 </body>
 
+<% if (user) { %>
+
 <script>
 
-    new Sheet('#sheet', 10, 10);
+    new Sheet('#sheet', 10, 8);
 
 </script>
+
+<% } %>
 
 </html>
