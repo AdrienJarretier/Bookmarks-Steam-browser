@@ -5,21 +5,36 @@ var router = express.Router();
 
 const common = require('../common.js');
 
+const globalTitle = 'Bookmarks - Steam browser';
+
+const PAGES = {
+  'Bookmarks': {
+    route: '/'
+  },
+  'Spreadsheets': {
+    route: '/spreadsheets'
+  },
+}
+
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get(PAGES['Bookmarks'].route, function (req, res, next) {
 
   res.render('index', {
-    globalTitle: 'Bookmarks - Steam browser',
-    user: req.user
+    globalTitle: globalTitle,
+    user: req.user,
+    pages:PAGES,
+    page: 'Bookmarks'
   });
 });
 
 /* GET home page. */
-router.get('/spreadsheet', function (req, res, next) {
+router.get(PAGES['Spreadsheets'].route, function (req, res, next) {
 
-  res.render('spreadsheet', {
-    globalTitle: 'Bookmarks - Steam browser',
-    user: req.user
+  res.render('spreadsheets', {
+    globalTitle: globalTitle,
+    user: req.user,
+    pages:PAGES,
+    page: 'Spreadsheets'
   });
 });
 
