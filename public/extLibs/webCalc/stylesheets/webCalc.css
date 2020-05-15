@@ -1,0 +1,35 @@
+th,td {
+
+    border: solid 1px;
+    border-color: hsl(0, 0%, 70%);
+
+}
+
+th {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    text-align: center;
+    background-color: hsl(0, 0%, 90%);
+}
+
+.cell {
+    width: 0.89in;
+    height: 0.18in;
+}
+
+.selected {
+    border: solid 2px black;
+}
+
+[contenteditable="true"].single-line {
+    white-space: nowrap;
+    overflow: visible;
+} 
+[contenteditable="true"].single-line br {
+    display:none;
+
+}
+[contenteditable="true"].single-line * {
+    display:inline;
+    white-space:nowrap;
+}

@@ -14,14 +14,23 @@ router.get('/', function (req, res, next) {
   });
 });
 
+/* GET home page. */
+router.get('/spreadsheet', function (req, res, next) {
 
-
-router.get('/account', common.ensureAuthenticated, function (req, res) {
-  res.render('account', {
+  res.render('spreadsheet', {
     globalTitle: 'Bookmarks - Steam browser',
     user: req.user
   });
 });
+
+
+
+// router.get('/account', common.ensureAuthenticated, function (req, res) {
+//   res.render('account', {
+//     globalTitle: 'Bookmarks - Steam browser',
+//     user: req.user
+//   });
+// });
 
 
 router.get('/logout', function (req, res) {
