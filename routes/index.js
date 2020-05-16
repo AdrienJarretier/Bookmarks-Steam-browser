@@ -8,16 +8,13 @@ const common = require('../common.js');
 const globalTitle = 'Bookmarks - Steam browser';
 
 const PAGES = {
-  'Bookmarks': {
-    route: '/'
-  },
   'Spreadsheets': {
     route: '/spreadsheets'
   },
 }
 
 /* GET home page. */
-router.get(PAGES['Bookmarks'].route, function (req, res, next) {
+router.get('/', function (req, res, next) {
 
   res.render('index', {
     globalTitle: globalTitle,
