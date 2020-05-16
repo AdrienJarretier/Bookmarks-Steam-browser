@@ -20,7 +20,7 @@ router.get('/', function (req, res, next) {
     globalTitle: globalTitle,
     user: req.user,
     pages:PAGES,
-    page: 'Bookmarks'
+    currentPage: 'Bookmarks'
   });
 });
 
@@ -31,7 +31,7 @@ router.get(PAGES['Spreadsheets'].route, function (req, res, next) {
     globalTitle: globalTitle,
     user: req.user,
     pages:PAGES,
-    page: 'Spreadsheets'
+    currentPage: 'Spreadsheets'
   });
 });
 
