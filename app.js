@@ -84,9 +84,9 @@ app.set('view engine', 'ejs');
 
 app.use(session({
   secret: 'your secret',
-  name: 'name of session id',
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: false,
+  cookie: { maxAge: 2147483647 }
 }));
 
 // Initialize Passport!  Also use passport.session() middleware, to support
