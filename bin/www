@@ -11,7 +11,7 @@ const common = require("../common.js");
 
 var app = require('../app');
 var debug = require('debug')('app:server');
-var https = require('https');
+var http = require('http');
 
 /**
  * Get port from environment and store in Express.
@@ -24,7 +24,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = https.createServer(app);
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
