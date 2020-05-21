@@ -84,10 +84,14 @@ app.set('view engine', 'ejs');
 
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: 'your secret',
+  secret: common.serverConfig.sessionSecret,
   resave: true,
   saveUninitialized: false,
-  cookie: { maxAge: 2147483647 }
+  cookie: {
+    maxAge: 2147483647,
+    httpOnly: true,
+    secure: common.serverConfig.secure,
+  }
 }));
 
 // Initialize Passport!  Also use passport.session() middleware, to support

@@ -2,5 +2,7 @@
     "port": 3000,
     "listeningInterface": "127.0.0.1",
     "steamApiKey":"",
-    "returnAddress": "http://127.0.0.1"
+    "returnAddress": "http://127.0.0.1",
+    "sessionSecret":"secret used to sign the session ID cookie, you should customize this to something secret",
+    "secure": true
 }
