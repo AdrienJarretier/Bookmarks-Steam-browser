@@ -9,6 +9,7 @@ var logger = require('morgan');
 
 var passport = require('passport');
 var session = require('express-session');
+var MemoryStore = require('memorystore')(session)
 var SteamStrategy = require('passport-steam');
 
 
@@ -85,13 +86,16 @@ app.set('view engine', 'ejs');
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: common.serverConfig.sessionSecret,
-  resave: true,
+  resave: false,
   saveUninitialized: false,
   cookie: {
     maxAge: 2147483647,
     httpOnly: true,
     secure: common.serverConfig.secure,
-  }
+  },
+  store: new MemoryStore({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  })
 }));
 
 // Initialize Passport!  Also use passport.session() middleware, to support
