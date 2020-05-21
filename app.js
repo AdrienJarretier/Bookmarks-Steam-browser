@@ -82,6 +82,9 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.enable('trust proxy');
+app.set('trust proxy', 1) // trust first proxy
+
 app.use(session({
   secret: common.serverConfig.sessionSecret,
   resave: false,
@@ -95,7 +98,6 @@ app.use(session({
     checkPeriod: 86400000 // prune expired entries every 24h
   })
 }));
-app.set('trust proxy', 1) // trust first proxy
 
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
