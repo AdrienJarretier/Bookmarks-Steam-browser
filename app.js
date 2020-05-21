@@ -91,6 +91,7 @@ app.use(session({
     maxAge: 2147483647,
     httpOnly: true,
     secure: false,
+    domain: common.serverConfig.sessionCookieDomain
   },
   store: new MemoryStore({
     checkPeriod: 86400000 // prune expired entries every 24h

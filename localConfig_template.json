@@ -3,5 +3,6 @@
     "listeningInterface": "127.0.0.1",
     "steamApiKey":"",
     "returnAddress": "http://127.0.0.1",
-    "sessionSecret":"secret used to sign the session ID cookie, you should customize this to something secret"
+    "sessionSecret":"secret used to sign the session ID cookie, you should customize this to something secret",
+    "sessionCookieDomain":"127.0.0.1"
 }
