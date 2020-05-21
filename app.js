@@ -83,6 +83,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.enable('trust proxy');
+app.set('trust proxy', true) // trust first proxy
 app.set('trust proxy', 1) // trust first proxy
 
 app.use(session({

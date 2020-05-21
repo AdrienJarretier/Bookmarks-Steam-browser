@@ -14,6 +14,8 @@ const db = require('../db/db.js');
 router.get('/steam',
   passport.authenticate('steam', { failureRedirect: '/' }),
   function (req, res) {
+
+    console.log(req.headers.cookie);
     res.redirect('/');
   });
 
@@ -25,6 +27,8 @@ router.get('/steam',
 router.get('/steam/return',
   // Issue #37 - Workaround for Express router module stripping the full url, causing assertion to fail 
   function (req, res, next) {
+
+    console.log(req.headers.cookie);
 
     req.url = req.originalUrl;
     next();
